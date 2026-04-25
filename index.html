@@ -1,0 +1,300 @@
+*<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guia de Comandos Git - Referencia Completa - 04-2026</title>
+    <style>
+        :root {
+            --bg: #f7f9fc;
+            --card: #ffffff;
+            --text: #1f2937;
+            --muted: #4b5563;
+            --line: #d1d5db;
+            --accent: #0f766e;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--text);
+            background: linear-gradient(180deg, #f7f9fc 0%, #eef3f8 100%);
+            line-height: 1.6;
+        }
+
+        .container {
+            width: min(1100px, 92%);
+            margin: 0 auto;
+            padding: 28px 0 48px;
+        }
+
+        header {
+            background: var(--card);
+            border: 1px solid var(--line);
+            border-radius: 14px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        h1, h2 {
+            margin-top: 0;
+        }
+
+        .muted {
+            color: var(--muted);
+        }
+
+        nav {
+            background: var(--card);
+            border: 1px solid var(--line);
+            border-radius: 14px;
+            padding: 18px;
+            margin-bottom: 20px;
+        }
+
+        nav ul {
+            margin: 0;
+            padding-left: 20px;
+            columns: 2;
+            gap: 28px;
+        }
+
+        nav a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        section {
+            background: var(--card);
+            border: 1px solid var(--line);
+            border-radius: 14px;
+            padding: 18px;
+            margin-bottom: 16px;
+        }
+
+        code {
+            background: #ecfeff;
+            border: 1px solid #99f6e4;
+            border-radius: 6px;
+            padding: 2px 6px;
+        }
+
+        .cmd {
+            margin-bottom: 12px;
+        }
+
+        .cmd p {
+            margin: 6px 0;
+        }
+
+        .top {
+            display: inline-block;
+            margin-top: 8px;
+            color: var(--accent);
+            text-decoration: none;
+            font-size: 0.95rem;
+        }
+
+        @media (max-width: 780px) {
+            nav ul {
+                columns: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header id="topo">
+            <h1>Guia Git com Topicos e Ancoras</h1>
+            <p class="muted">
+                Referencia extensa dos comandos mais usados do Git, incluindo comandos de trabalho diario,
+                colaboracao, historico, limpeza, configuracao e comandos internos avancados.
+            </p>
+        </header>
+
+        <nav>
+            <h2>Indice</h2>
+            <ul>
+                <li><a href="#iniciais">1. Inicio e configuracao</a></li>
+                <li><a href="#fluxo">2. Fluxo diario</a></li>
+                <li><a href="#branches">3. Branches e integracao</a></li>
+                <li><a href="#merge">4. Comandos de merge</a></li>
+                <li><a href="#remoto">5. Repositorios remotos</a></li>
+                <li><a href="#historico">6. Historico e comparacao</a></li>
+                <li><a href="#voltar">7. Desfazer e recuperar</a></li>
+                <li><a href="#stash">8. Stash e limpeza</a></li>
+                <li><a href="#tags">9. Tags e releases</a></li>
+                <li><a href="#submodulos">10. Submodulos e subarvores</a></li>
+                <li><a href="#manutencao">11. Manutencao e desempenho</a></li>
+                <li><a href="#internos">12. Comandos internos (plumbing)</a></li>
+            </ul>
+        </nav>
+
+        <section id="iniciais">
+            <h2>1. Inicio e configuracao</h2>
+            <div class="cmd"><p><code>git init</code> Cria um repositorio Git local.</p></div>
+            <div class="cmd"><p><code>git clone URL</code> Baixa um repositorio remoto.</p></div>
+            <div class="cmd"><p><code>git config --global user.name "Seu Nome"</code> Define nome global.</p></div>
+            <div class="cmd"><p><code>git config --global user.email "email@dominio.com"</code> Define email global.</p></div>
+            <div class="cmd"><p><code>git config --list</code> Lista configuracoes ativas.</p></div>
+            <div class="cmd"><p><code>git config --global init.defaultBranch main</code> Define branch padrao.</p></div>
+            <a class="top" href="#topo">Voltar ao topo</a>
+        </section>
+
+        <section id="fluxo">
+            <h2>2. Fluxo diario</h2>
+            <div class="cmd"><p><code>git status</code> Mostra estado dos arquivos.</p></div>
+            <div class="cmd"><p><code>git add arquivo</code> Adiciona arquivo ao staging.</p></div>
+            <div class="cmd"><p><code>git add .</code> Adiciona alteracoes do diretorio atual.</p></div>
+            <div class="cmd"><p><code>git commit -m "mensagem"</code> Cria commit com mensagem.</p></div>
+            <div class="cmd"><p><code>git commit --amend</code> Ajusta ultimo commit.</p></div>
+            <div class="cmd"><p><code>git mv origem destino</code> Move/renomeia arquivo rastreado.</p></div>
+            <div class="cmd"><p><code>git rm arquivo</code> Remove arquivo e registra remocao.</p></div>
+            <div class="cmd"><p><code>git restore arquivo</code> Restaura arquivo do indice/HEAD.</p></div>
+            <div class="cmd"><p><code>git restore --staged arquivo</code> Retira do staging.</p></div>
+            <a class="top" href="#topo">Voltar ao topo</a>
+        </section>
+
+        <section id="branches">
+            <h2>3. Branches e integracao</h2>
+            <div class="cmd"><p><code>git branch</code> Lista branches locais.</p></div>
+            <div class="cmd"><p><code>git branch nome</code> Cria nova branch.</p></div>
+            <div class="cmd"><p><code>git switch nome</code> Troca para branch existente.</p></div>
+            <div class="cmd"><p><code>git switch -c nome</code> Cria e troca para nova branch.</p></div>
+            <div class="cmd"><p><code>git checkout nome</code> Forma antiga para trocar branch/arquivo.</p></div>
+            <div class="cmd"><p><code>git merge branch</code> Junta branch na atual.</p></div>
+            <div class="cmd"><p><code>git rebase branch</code> Reaplica commits sobre outra base.</p></div>
+            <div class="cmd"><p><code>git cherry-pick hash</code> Aplica commit especifico.</p></div>
+            <div class="cmd"><p><code>git branch -d nome</code> Remove branch mesclada.</p></div>
+            <div class="cmd"><p><code>git branch -D nome</code> Forca remocao de branch.</p></div>
+            <a class="top" href="#topo">Voltar ao topo</a>
+        </section>
+
+        <section id="merge">
+            <h2>4. Comandos de merge</h2>
+            <div class="cmd"><p><code>git merge nome-da-branch</code> Mescla a branch informada na branch atual.</p></div>
+            <div class="cmd"><p><code>git merge --no-ff nome-da-branch</code> Forca commit de merge, mantendo historico explicito.</p></div>
+            <div class="cmd"><p><code>git merge --ff-only nome-da-branch</code> So permite fast-forward, sem commit de merge.</p></div>
+            <div class="cmd"><p><code>git merge --squash nome-da-branch</code> Junta alteracoes em um unico commit manual.</p></div>
+            <div class="cmd"><p><code>git merge --no-commit nome-da-branch</code> Prepara merge sem commitar automaticamente.</p></div>
+            <div class="cmd"><p><code>git merge -m "mensagem" nome-da-branch</code> Define mensagem do commit de merge.</p></div>
+            <div class="cmd"><p><code>git merge --abort</code> Cancela merge em conflito e volta ao estado anterior.</p></div>
+            <div class="cmd"><p><code>git merge --continue</code> Continua merge apos resolver conflitos.</p></div>
+            <div class="cmd"><p><code>git mergetool</code> Abre ferramenta para resolver conflitos visualmente.</p></div>
+            <div class="cmd"><p><code>git log --merges</code> Lista somente commits de merge.</p></div>
+            <a class="top" href="#topo">Voltar ao topo</a>
+        </section>
+
+        <section id="remoto">
+            <h2>5. Repositorios remotos</h2>
+            <div class="cmd"><p><code>git remote -v</code> Lista remotos configurados.</p></div>
+            <div class="cmd"><p><code>git remote add origin URL</code> Adiciona remoto.</p></div>
+            <div class="cmd"><p><code>git fetch</code> Busca novidades sem mesclar.</p></div>
+            <div class="cmd"><p><code>git pull</code> Busca e integra (fetch + merge/rebase).</p></div>
+            <div class="cmd"><p><code>git pull --rebase</code> Atualiza com rebase.</p></div>
+            <div class="cmd"><p><code>git push</code> Envia commits para remoto.</p></div>
+            <div class="cmd"><p><code>git push -u origin branch</code> Define upstream.</p></div>
+            <div class="cmd"><p><code>git push --force-with-lease</code> Force push seguro.</p></div>
+            <div class="cmd"><p><code>git remote rename antigo novo</code> Renomeia remoto.</p></div>
+            <div class="cmd"><p><code>git remote remove nome</code> Remove remoto.</p></div>
+            <a class="top" href="#topo">Voltar ao topo</a>
+        </section>
+
+        <section id="historico">
+            <h2>6. Historico e comparacao</h2>
+            <div class="cmd"><p><code>git log</code> Mostra historico de commits.</p></div>
+            <div class="cmd"><p><code>git log --oneline --graph --decorate --all</code> Historico resumido em grafo.</p></div>
+            <div class="cmd"><p><code>git show hash</code> Exibe detalhes de commit/tag.</p></div>
+            <div class="cmd"><p><code>git diff</code> Diferencas nao staged.</p></div>
+            <div class="cmd"><p><code>git diff --staged</code> Diferencas staged.</p></div>
+            <div class="cmd"><p><code>git diff A..B</code> Compara dois pontos de historico.</p></div>
+            <div class="cmd"><p><code>git blame arquivo</code> Mostra autoria por linha.</p></div>
+            <div class="cmd"><p><code>git shortlog -sn</code> Resumo de contribuicoes.</p></div>
+            <div class="cmd"><p><code>git reflog</code> Historico de movimentos do HEAD.</p></div>
+            <a class="top" href="#topo">Voltar ao topo</a>
+        </section>
+
+        <section id="voltar">
+            <h2>7. Desfazer e recuperar</h2>
+            <div class="cmd"><p><code>git reset --soft HEAD~1</code> Desfaz commit mantendo staging.</p></div>
+            <div class="cmd"><p><code>git reset --mixed HEAD~1</code> Desfaz commit e limpa staging.</p></div>
+            <div class="cmd"><p><code>git reset --hard HEAD~1</code> Desfaz commit e descarta alteracoes locais.</p></div>
+            <div class="cmd"><p><code>git revert hash</code> Cria commit de reversao sem reescrever historico.</p></div>
+            <div class="cmd"><p><code>git checkout -- arquivo</code> Forma antiga de restaurar arquivo.</p></div>
+            <div class="cmd"><p><code>git restore --source=HEAD~1 arquivo</code> Recupera arquivo de revisao anterior.</p></div>
+            <a class="top" href="#topo">Voltar ao topo</a>
+        </section>
+
+        <section id="stash">
+            <h2>8. Stash e limpeza</h2>
+            <div class="cmd"><p><code>git stash</code> Guarda alteracoes locais temporariamente.</p></div>
+            <div class="cmd"><p><code>git stash push -m "nota"</code> Cria stash com descricao.</p></div>
+            <div class="cmd"><p><code>git stash list</code> Lista stashes.</p></div>
+            <div class="cmd"><p><code>git stash pop</code> Aplica e remove stash.</p></div>
+            <div class="cmd"><p><code>git stash apply</code> Aplica sem remover stash.</p></div>
+            <div class="cmd"><p><code>git clean -n</code> Simula limpeza de arquivos nao rastreados.</p></div>
+            <div class="cmd"><p><code>git clean -fd</code> Remove arquivos/pastas nao rastreados.</p></div>
+            <a class="top" href="#topo">Voltar ao topo</a>
+        </section>
+
+        <section id="tags">
+            <h2>9. Tags e releases</h2>
+            <div class="cmd"><p><code>git tag</code> Lista tags.</p></div>
+            <div class="cmd"><p><code>git tag v1.0.0</code> Cria tag leve.</p></div>
+            <div class="cmd"><p><code>git tag -a v1.0.0 -m "release"</code> Cria tag anotada.</p></div>
+            <div class="cmd"><p><code>git show v1.0.0</code> Exibe dados da tag.</p></div>
+            <div class="cmd"><p><code>git push origin v1.0.0</code> Publica tag especifica.</p></div>
+            <div class="cmd"><p><code>git push origin --tags</code> Publica todas as tags.</p></div>
+            <div class="cmd"><p><code>git tag -d v1.0.0</code> Remove tag local.</p></div>
+            <a class="top" href="#topo">Voltar ao topo</a>
+        </section>
+
+        <section id="submodulos">
+            <h2>10. Submodulos e subarvores</h2>
+            <div class="cmd"><p><code>git submodule add URL caminho</code> Adiciona submodulo.</p></div>
+            <div class="cmd"><p><code>git submodule update --init --recursive</code> Inicializa/atualiza submodulos.</p></div>
+            <div class="cmd"><p><code>git submodule foreach 'git pull'</code> Atualiza cada submodulo.</p></div>
+            <div class="cmd"><p><code>git subtree add --prefix=pasta URL main --squash</code> Importa projeto como subtree.</p></div>
+            <div class="cmd"><p><code>git subtree pull --prefix=pasta URL main --squash</code> Atualiza subtree.</p></div>
+            <a class="top" href="#topo">Voltar ao topo</a>
+        </section>
+
+        <section id="manutencao">
+            <h2>11. Manutencao e desempenho</h2>
+            <div class="cmd"><p><code>git gc</code> Coleta lixo e otimiza objetos.</p></div>
+            <div class="cmd"><p><code>git fsck</code> Verifica integridade do repositorio.</p></div>
+            <div class="cmd"><p><code>git prune</code> Remove objetos nao acessiveis (uso com cuidado).</p></div>
+            <div class="cmd"><p><code>git repack -a -d</code> Reempacota objetos para eficiencia.</p></div>
+            <div class="cmd"><p><code>git count-objects -vH</code> Mostra estatisticas de objetos.</p></div>
+            <div class="cmd"><p><code>git maintenance run</code> Executa manutencao automatizada.</p></div>
+            <a class="top" href="#topo">Voltar ao topo</a>
+        </section>
+
+        <section id="internos">
+            <h2>12. Comandos internos (plumbing)</h2>
+            <p class="muted">Comandos mais tecnicos, usados em scripts, ferramentas e depuracao.</p>
+            <div class="cmd"><p><code>git hash-object arquivo</code> Gera hash do objeto.</p></div>
+            <div class="cmd"><p><code>git cat-file -p hash</code> Le objeto Git pelo hash.</p></div>
+            <div class="cmd"><p><code>git ls-files</code> Lista arquivos rastreados no indice.</p></div>
+            <div class="cmd"><p><code>git ls-tree -r HEAD</code> Lista arvore de arquivos de um commit.</p></div>
+            <div class="cmd"><p><code>git rev-parse HEAD</code> Resolve referencias para hashes.</p></div>
+            <div class="cmd"><p><code>git update-index</code> Manipula indice diretamente.</p></div>
+            <div class="cmd"><p><code>git write-tree</code> Escreve arvore do indice.</p></div>
+            <div class="cmd"><p><code>git commit-tree</code> Cria commit manual a partir de tree.</p></div>
+            <div class="cmd"><p><code>git mktree</code> Cria objeto tree manualmente.</p></div>
+            <div class="cmd"><p><code>git unpack-objects</code> Expande objetos de packfiles.</p></div>
+            <div class="cmd"><p><code>git pack-objects</code> Cria packfiles.</p></div>
+            <div class="cmd"><p><code>git verify-pack</code> Verifica conteudo de pack.</p></div>
+            <a class="top" href="#topo">Voltar ao topo</a>
+        </section>
+    </div>
+</body>
+</html>
