@@ -126,14 +126,15 @@
                 <li><a href="#iniciais">1. Inicio e configuracao</a></li>
                 <li><a href="#fluxo">2. Fluxo diario</a></li>
                 <li><a href="#branches">3. Branches e integracao</a></li>
-                <li><a href="#remoto">4. Repositorios remotos</a></li>
-                <li><a href="#historico">5. Historico e comparacao</a></li>
-                <li><a href="#voltar">6. Desfazer e recuperar</a></li>
-                <li><a href="#stash">7. Stash e limpeza</a></li>
-                <li><a href="#tags">8. Tags e releases</a></li>
-                <li><a href="#submodulos">9. Submodulos e subarvores</a></li>
-                <li><a href="#manutencao">10. Manutencao e desempenho</a></li>
-                <li><a href="#internos">11. Comandos internos (plumbing)</a></li>
+                <li><a href="#merge">4. Comandos de merge</a></li>
+                <li><a href="#remoto">5. Repositorios remotos</a></li>
+                <li><a href="#historico">6. Historico e comparacao</a></li>
+                <li><a href="#voltar">7. Desfazer e recuperar</a></li>
+                <li><a href="#stash">8. Stash e limpeza</a></li>
+                <li><a href="#tags">9. Tags e releases</a></li>
+                <li><a href="#submodulos">10. Submodulos e subarvores</a></li>
+                <li><a href="#manutencao">11. Manutencao e desempenho</a></li>
+                <li><a href="#internos">12. Comandos internos (plumbing)</a></li>
             </ul>
         </nav>
 
@@ -177,8 +178,23 @@
             <a class="top" href="#topo">Voltar ao topo</a>
         </section>
 
+        <section id="merge">
+            <h2>4. Comandos de merge</h2>
+            <div class="cmd"><p><code>git merge nome-da-branch</code> Mescla a branch informada na branch atual.</p></div>
+            <div class="cmd"><p><code>git merge --no-ff nome-da-branch</code> Forca commit de merge, mantendo historico explicito.</p></div>
+            <div class="cmd"><p><code>git merge --ff-only nome-da-branch</code> So permite fast-forward, sem commit de merge.</p></div>
+            <div class="cmd"><p><code>git merge --squash nome-da-branch</code> Junta alteracoes em um unico commit manual.</p></div>
+            <div class="cmd"><p><code>git merge --no-commit nome-da-branch</code> Prepara merge sem commitar automaticamente.</p></div>
+            <div class="cmd"><p><code>git merge -m "mensagem" nome-da-branch</code> Define mensagem do commit de merge.</p></div>
+            <div class="cmd"><p><code>git merge --abort</code> Cancela merge em conflito e volta ao estado anterior.</p></div>
+            <div class="cmd"><p><code>git merge --continue</code> Continua merge apos resolver conflitos.</p></div>
+            <div class="cmd"><p><code>git mergetool</code> Abre ferramenta para resolver conflitos visualmente.</p></div>
+            <div class="cmd"><p><code>git log --merges</code> Lista somente commits de merge.</p></div>
+            <a class="top" href="#topo">Voltar ao topo</a>
+        </section>
+
         <section id="remoto">
-            <h2>4. Repositorios remotos</h2>
+            <h2>5. Repositorios remotos</h2>
             <div class="cmd"><p><code>git remote -v</code> Lista remotos configurados.</p></div>
             <div class="cmd"><p><code>git remote add origin URL</code> Adiciona remoto.</p></div>
             <div class="cmd"><p><code>git fetch</code> Busca novidades sem mesclar.</p></div>
@@ -193,7 +209,7 @@
         </section>
 
         <section id="historico">
-            <h2>5. Historico e comparacao</h2>
+            <h2>6. Historico e comparacao</h2>
             <div class="cmd"><p><code>git log</code> Mostra historico de commits.</p></div>
             <div class="cmd"><p><code>git log --oneline --graph --decorate --all</code> Historico resumido em grafo.</p></div>
             <div class="cmd"><p><code>git show hash</code> Exibe detalhes de commit/tag.</p></div>
@@ -207,7 +223,7 @@
         </section>
 
         <section id="voltar">
-            <h2>6. Desfazer e recuperar</h2>
+            <h2>7. Desfazer e recuperar</h2>
             <div class="cmd"><p><code>git reset --soft HEAD~1</code> Desfaz commit mantendo staging.</p></div>
             <div class="cmd"><p><code>git reset --mixed HEAD~1</code> Desfaz commit e limpa staging.</p></div>
             <div class="cmd"><p><code>git reset --hard HEAD~1</code> Desfaz commit e descarta alteracoes locais.</p></div>
@@ -218,7 +234,7 @@
         </section>
 
         <section id="stash">
-            <h2>7. Stash e limpeza</h2>
+            <h2>8. Stash e limpeza</h2>
             <div class="cmd"><p><code>git stash</code> Guarda alteracoes locais temporariamente.</p></div>
             <div class="cmd"><p><code>git stash push -m "nota"</code> Cria stash com descricao.</p></div>
             <div class="cmd"><p><code>git stash list</code> Lista stashes.</p></div>
@@ -230,7 +246,7 @@
         </section>
 
         <section id="tags">
-            <h2>8. Tags e releases</h2>
+            <h2>9. Tags e releases</h2>
             <div class="cmd"><p><code>git tag</code> Lista tags.</p></div>
             <div class="cmd"><p><code>git tag v1.0.0</code> Cria tag leve.</p></div>
             <div class="cmd"><p><code>git tag -a v1.0.0 -m "release"</code> Cria tag anotada.</p></div>
@@ -242,7 +258,7 @@
         </section>
 
         <section id="submodulos">
-            <h2>9. Submodulos e subarvores</h2>
+            <h2>10. Submodulos e subarvores</h2>
             <div class="cmd"><p><code>git submodule add URL caminho</code> Adiciona submodulo.</p></div>
             <div class="cmd"><p><code>git submodule update --init --recursive</code> Inicializa/atualiza submodulos.</p></div>
             <div class="cmd"><p><code>git submodule foreach 'git pull'</code> Atualiza cada submodulo.</p></div>
@@ -252,7 +268,7 @@
         </section>
 
         <section id="manutencao">
-            <h2>10. Manutencao e desempenho</h2>
+            <h2>11. Manutencao e desempenho</h2>
             <div class="cmd"><p><code>git gc</code> Coleta lixo e otimiza objetos.</p></div>
             <div class="cmd"><p><code>git fsck</code> Verifica integridade do repositorio.</p></div>
             <div class="cmd"><p><code>git prune</code> Remove objetos nao acessiveis (uso com cuidado).</p></div>
@@ -263,7 +279,7 @@
         </section>
 
         <section id="internos">
-            <h2>11. Comandos internos (plumbing)</h2>
+            <h2>12. Comandos internos (plumbing)</h2>
             <p class="muted">Comandos mais tecnicos, usados em scripts, ferramentas e depuracao.</p>
             <div class="cmd"><p><code>git hash-object arquivo</code> Gera hash do objeto.</p></div>
             <div class="cmd"><p><code>git cat-file -p hash</code> Le objeto Git pelo hash.</p></div>
