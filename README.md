@@ -1,6 +1,6 @@
 # Estudo Git
 
-Repositorio criado para praticar comandos Git na rotina real de versionamento.
+Repositorio criado para ajudar estudantes a praticar comandos Git na rotina real de versionamento.
 
 ## Objetivo
 
