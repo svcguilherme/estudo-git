@@ -4,7 +4,7 @@ Repositorio criado para ajudar estudantes a praticar comandos Git na rotina real
 
 ## Objetivo
 
-Este estudo foi feito para aprender, na pratica:
+Este estudo foi feito para explicar, na pratica:
 
 - criacao de repositorio local e remoto
 - fluxo de alteracao, commit e push
@@ -15,7 +15,7 @@ Este estudo foi feito para aprender, na pratica:
 
 ## O que foi praticado
 
-Durante o estudo, foram executados comandos como:
+Durante a criaçõ, foram executados comandos como:
 
 - `git init`
 - `git status`
